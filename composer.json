@@ -3,23 +3,12 @@
     "description": "Projeto de busca de cursos da Alura online",
     "type": "library",
     "autoload": {
-        "psr-4": {
-            "Pacosoares\\BuscadorCursos\\": "src/"
-        }
-    },
-    "authors": [
+        "authors": [
         {
             "name": "pacosoares",
             "email": "services.paco@gmail.com"
         }
     ],
-    "require": {
-        "guzzlehttp/guzzle": "^7.9",
-        "symfony/css-selector": "^7.2",
-        "symfony/dom-crawler": "^6.0"
-    },
-
-    "autoload": {
         "classmap": [
             "./Teste.php"
         ],
@@ -36,8 +25,22 @@
         "phan/phan": "^5.4"
     },
     "scripts": {
-        "test": "phpunit tests/TestBuscadorDeCursos.php",
+        "test": "phpunit --color tests/TestBuscadorDeCursos.php",
         "phan": "phan --allow-polyfill-parser src/Buscador.php",
-        "cs": "phpcs src/Buscador.php"
+        "cs": "phpcs src/Buscador.php",
+        "check": [
+            "@test",
+            "@phan",
+            "@cs"
+        ],
+        "post-update-cmd": [
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Roda os testes",
+        "phan": "Roda o analisador estático de código",
+        "cs": "Roda o PHP Code Sniffer",
+        "check": "Roda todos os checks"
     }
-}
+}    
